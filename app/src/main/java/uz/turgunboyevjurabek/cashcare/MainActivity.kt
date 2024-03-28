@@ -3,6 +3,7 @@ package uz.turgunboyevjurabek.cashcare
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -14,6 +15,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
@@ -46,21 +48,24 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import uz.turgunboyevjurabek.cashcare.View.Authorization.WelcomeScreen
+import uz.turgunboyevjurabek.cashcare.View.UIElements.CustomEdit
 import uz.turgunboyevjurabek.cashcare.ui.theme.CashCareTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
         setContent {
             CashCareTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(
-                    modifier = Modifier.fillMaxSize(),
+                    modifier = Modifier.fillMaxSize()
+                        ,
                     color = MaterialTheme.colorScheme.background
                 ) {
-
                 Column {
-                        CustomEdit()
+                    WelcomeScreen()
                     }
                 }
             }
@@ -68,64 +73,12 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-@Composable
-fun CustomEdit() {
-    var text by remember {
-        mutableStateOf("")
-    }
-    val context = LocalContext.current
-    val mask = MaskVisualTransformation("##-###-##-##")
-    val focusRequester = remember {
-        FocusRequester()
-    }
-    var inputIsFocused by remember {
-        mutableStateOf(false)
-    }
-    Box(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(15.dp)
-            .height(50.dp)
-            .clip(RoundedCornerShape(10.dp))
-    ) {
-        Row(
-            modifier = Modifier
-                .fillMaxSize()
-                .background(colorResource(id = R.color.edtColor)),
-            verticalAlignment = Alignment.CenterVertically,
-        ) {
 
-            Spacer(modifier = Modifier.width(30.dp))
-            Text(text = "+998 |", fontSize = 18.sp, fontWeight = FontWeight.SemiBold, color = Color.Black)
-            Spacer(modifier = Modifier.width(5.dp))
-            BasicTextField(
-                keyboardActions = KeyboardActions.Default,
-                value = text,
-                onValueChange = { it ->
-                    if (it.length <= 9){
-                        text = it.filter { it.isDigit() }
-                    }
-                },
-                textStyle = TextStyle(fontSize = 18.sp, fontWeight = FontWeight.SemiBold),
-                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
-                maxLines = 1,
-                visualTransformation = mask,
-                modifier = Modifier
-                    .focusRequester(focusRequester)
-                    .onFocusChanged { inputIsFocused = it.isFocused }
-                    .width(120.dp)
-
-
-            )
-        }
-    }
-
-}
 
 @Preview(showSystemUi = true)
 @Composable
 fun GreetingPreview() {
     CashCareTheme {
-        CustomEdit()
+
     }
 }
