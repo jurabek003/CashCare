@@ -49,6 +49,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import uz.turgunboyevjurabek.cashcare.View.Authorization.WelcomeScreen
+import uz.turgunboyevjurabek.cashcare.View.Language.LanguageScreen
 import uz.turgunboyevjurabek.cashcare.View.UIElements.CustomEdit
 import uz.turgunboyevjurabek.cashcare.ui.theme.CashCareTheme
 
@@ -65,7 +66,8 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
                 Column {
-                    WelcomeScreen()
+//                    WelcomeScreen()
+                    LanguageScreen()
                     }
                 }
             }

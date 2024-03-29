@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
@@ -147,22 +148,49 @@ fun WelcomeScreen() {
             textAlign = TextAlign.Center,
             modifier = Modifier
                 .alpha(0.4f)
-                .padding(top = 220.dp, start = 25.dp, end = 25.dp)
+                .padding(top = 220.dp, start = 20.dp, end = 20.dp)
         )
-
-        Button(
+        Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(15.dp),
-            shape = RoundedCornerShape(10.dp),
-            colors = ButtonDefaults.buttonColors(
-                containerColor = Color.White
-            ),
-            onClick = {
+                .weight(1f),
+            verticalArrangement = Arrangement.Bottom
+        ) {
+          Box(
+              Modifier.padding(start = 11.dp, end = 11.dp, bottom = 35.dp)
+          ){
+              Button(
+                  modifier = Modifier
+                      .fillMaxWidth()
+                      .padding(12.dp)
+                      .height(40.dp),
+                  shape = RoundedCornerShape(10.dp),
+                  colors = ButtonDefaults.buttonColors(
+                      containerColor = Color.White,
+                      contentColor = colorResource(id = R.color.bacUI)
+                  ),
+                  onClick = {
 
-        }) {
-            Text(text = "Boshlash", fontSize = 12.sp, color = Color.Black)
+                  }) {
+                  Text(text = "Boshlash", fontSize = 12.sp)
+              }
+              Box(
+                  modifier = Modifier
+                      .align(Alignment.TopEnd)
+
+              ){
+                  Image(
+                      painter = painterResource(id = R.drawable.ic_ellipse1),
+                      contentDescription = null,
+                      Modifier
+                          .size(35.dp)
+                  )
+              }
+          }
+
+
         }
+
 
     }
 
