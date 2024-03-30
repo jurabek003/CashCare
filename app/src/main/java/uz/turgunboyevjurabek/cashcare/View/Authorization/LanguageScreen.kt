@@ -1,4 +1,4 @@
-package uz.turgunboyevjurabek.cashcare.View.Language
+package uz.turgunboyevjurabek.cashcare.View.Authorization
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -17,7 +17,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Text
-import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -33,7 +32,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import org.intellij.lang.annotations.Language
 import uz.turgunboyevjurabek.cashcare.R
 
 @Composable
@@ -52,15 +50,27 @@ fun LanguageScreen() {
 
         }
 
-        Image(
-            painter = painterResource(id = R.drawable.til),
-            contentDescription = null,
+        Box(
             modifier = Modifier
                 .height(32.dp)
-                .width(130.dp)
                 .padding(top = 100.dp)
                 .weight(1.5f)
-        )
+                .align(Alignment.CenterHorizontally)
+        ){
+            Image(
+                painter = painterResource(id = R.drawable.ic_ellipse2),
+                contentDescription = null,
+                modifier = Modifier
+                    .size(20.dp)
+            )
+            Text(
+                text = "Tilni tanlang",
+                fontWeight = FontWeight.ExtraBold,
+                fontSize = 20.sp,
+                modifier = Modifier
+                    .padding(start = 6.dp,top=6.dp)
+            )
+        }
 
         var rus by remember {
             mutableStateOf(false)

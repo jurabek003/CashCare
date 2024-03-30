@@ -1,6 +1,8 @@
 package uz.turgunboyevjurabek.cashcare.View.UIElements
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -31,28 +33,29 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import uz.turgunboyevjurabek.cashcare.MaskVisualTransformation
 import uz.turgunboyevjurabek.cashcare.R
 
 @Composable
-fun CustomEdit() {
+fun CustomEdit():String {
     var text by remember {
         mutableStateOf("")
     }
-    val context = LocalContext.current
+
     val mask = MaskVisualTransformation("##-###-##-##")
     val focusRequester = remember {
         FocusRequester()
     }
+
     var inputIsFocused by remember {
         mutableStateOf(false)
     }
     Box(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(15.dp)
             .height(50.dp)
             .clip(RoundedCornerShape(10.dp))
     ) {
@@ -63,8 +66,13 @@ fun CustomEdit() {
             verticalAlignment = Alignment.CenterVertically,
         ) {
 
-            Spacer(modifier = Modifier.width(30.dp))
-            Text(text = "+998 |", fontSize = 18.sp, fontWeight = FontWeight.SemiBold, color = Color.Black)
+            Spacer(modifier = Modifier.width(20.dp))
+            Text(
+                text = "+998 |",
+                fontSize = 18.sp,
+                fontWeight = FontWeight.SemiBold,
+                color = Color.Black
+            )
             Spacer(modifier = Modifier.width(5.dp))
             BasicTextField(
                 keyboardActions = KeyboardActions.Default,
@@ -81,11 +89,18 @@ fun CustomEdit() {
                 modifier = Modifier
                     .focusRequester(focusRequester)
                     .onFocusChanged { inputIsFocused = it.isFocused }
-                    .width(120.dp)
+                    .align(Alignment.CenterVertically)
+                    .fillMaxWidth(),
 
 
             )
         }
     }
+    return text
+}
 
+@Preview(showSystemUi = true)
+@Composable
+private fun UIEDIT() {
+    CustomEdit()
 }
