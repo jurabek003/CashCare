@@ -1,15 +1,18 @@
 package uz.turgunboyevjurabek.cashcare.View.UIElements
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
@@ -91,16 +94,80 @@ fun CustomEdit():String {
                     .onFocusChanged { inputIsFocused = it.isFocused }
                     .align(Alignment.CenterVertically)
                     .fillMaxWidth(),
-
-
             )
         }
     }
     return text
 }
 
+@Composable
+ fun DuckieTextField(
+    text: String,
+    onTextChanged: (String) -> Unit,
+) {
+    BasicTextField(
+        value = text,
+        onValueChange = onTextChanged,
+        decorationBox = {
+            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                text.forEachIndexed { index, char ->
+                    DuckieTextFieldCharContainer(
+                        text = char,
+                        isFocused = index == text.lastIndex,
+                    )
+                }
+
+                repeat(8-4) {
+                    DuckieTextFieldCharContainer(
+                        text = ' ',
+                        isFocused =true,
+                    )
+                }
+            }
+        },
+    )
+}
+
+@Composable
+private fun DuckieTextFieldCharContainer(
+    modifier: Modifier = Modifier,
+    text: Char,
+    isFocused: Boolean,
+) {
+    val shape = remember { RoundedCornerShape(8.dp) }
+
+    Box(
+        modifier = modifier
+            .size(
+                width = 40.dp,
+                height = 52.dp,
+            )
+            .background(
+                color = colorResource(id = R.color.edtColor),
+                shape = shape,
+            )
+            .run {
+                if (isFocused) {
+                    border(
+                        width = 1.dp,
+                        color = Color(0xFFFF8300),
+                        shape = shape,
+                    )
+                } else {
+                    this
+                }
+            },
+        contentAlignment = Alignment.Center,
+    ) {
+        Text(text = text.toString())
+    }
+}
+
 @Preview(showSystemUi = true)
 @Composable
-private fun UIEDIT() {
-    CustomEdit()
+private fun UIedt() {
+    Column {
+        CustomEdit()
+        DuckieTextField(text = "") {}
+    }
 }

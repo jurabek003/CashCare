@@ -66,4 +66,11 @@ dependencies {
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
+
+    /**
+     * PinView
+     */
+    implementation ("com.yogeshpaliyal:speld:1.0.0")
+
+
 }

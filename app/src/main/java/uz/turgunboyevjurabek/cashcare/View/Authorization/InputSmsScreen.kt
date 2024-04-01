@@ -1,9 +1,9 @@
 package uz.turgunboyevjurabek.cashcare.View.Authorization
 
-import android.widget.Toast
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Text
@@ -34,27 +35,28 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.yogeshpaliyal.speld.PinInput
 import uz.turgunboyevjurabek.cashcare.R
 import uz.turgunboyevjurabek.cashcare.View.UIElements.CustomEdit
+import uz.turgunboyevjurabek.cashcare.View.UIElements.DuckieTextField
+
 
 @Composable
-fun PhoneNumberScreen() {
+fun InputSmsScreen() {
     Column(
         modifier = Modifier
             .fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
-        var son by remember {
+        var sms by remember {
             mutableStateOf("")
         }
         Row(
             modifier = Modifier
                 .fillMaxWidth()
                 .weight(1f)
-        ) {
-
-        }
+        ) {}
 
         Box(
             modifier = Modifier
@@ -70,7 +72,7 @@ fun PhoneNumberScreen() {
                     .size(20.dp)
             )
             Text(
-                text = "Telefon raqamingizni kiriting",
+                text = "Sms kodni kiriting",
                 fontWeight = FontWeight.ExtraBold,
                 fontSize = 20.sp,
                 modifier = Modifier
@@ -85,10 +87,13 @@ fun PhoneNumberScreen() {
                 .fillMaxWidth()
                 .weight(2f)
                 .padding(start = 20.dp, end = 20.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Text(text = "Telefon raqam:", fontSize = 12.sp)
-            son=CustomEdit()
-            val context= LocalContext.current
+
+            val text = remember { mutableStateOf("") }
+            DuckieTextField(text = text.value) {
+                text.value=it
+            }
         }
         Row(
             modifier = Modifier
@@ -103,7 +108,7 @@ fun PhoneNumberScreen() {
                     .height(45.dp),
                 shape = RoundedCornerShape(10.dp),
                 colors = ButtonDefaults.buttonColors(
-                    containerColor =  if (son != ""){
+                    containerColor =  if (sms != ""){
                         colorResource(id = R.color.bacUI)
                     }else{
                         Color.Cyan
@@ -120,11 +125,12 @@ fun PhoneNumberScreen() {
 
 
     }
-    
+
 }
 
 @Preview(showSystemUi = true)
 @Composable
-private fun UIPhoneNumber() {
-    PhoneNumberScreen()
+private fun SmsScreenUi() {
+    InputSmsScreen()
+
 }

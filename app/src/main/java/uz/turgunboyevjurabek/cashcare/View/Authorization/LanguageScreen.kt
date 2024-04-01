@@ -33,7 +33,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import uz.turgunboyevjurabek.cashcare.R
-
 @Composable
 fun LanguageScreen() {
     Column(
@@ -220,7 +219,7 @@ fun LanguageScreen() {
 
 }
 
-@Preview(showSystemUi = true)
+@Preview()
 @Composable
 fun LanguageUI() {
     LanguageScreen()
