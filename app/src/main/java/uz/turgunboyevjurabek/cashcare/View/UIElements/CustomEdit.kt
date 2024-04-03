@@ -1,3 +1,5 @@
+@file:OptIn(ExperimentalMaterial3Api::class)
+
 package uz.turgunboyevjurabek.cashcare.View.UIElements
 
 import androidx.compose.foundation.background
@@ -18,7 +20,10 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -31,10 +36,12 @@ import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -43,7 +50,7 @@ import uz.turgunboyevjurabek.cashcare.MaskVisualTransformation
 import uz.turgunboyevjurabek.cashcare.R
 
 @Composable
-fun CustomEdit():String {
+fun CustomEdit(): String {
     var text by remember {
         mutableStateOf("")
     }
@@ -81,7 +88,7 @@ fun CustomEdit():String {
                 keyboardActions = KeyboardActions.Default,
                 value = text,
                 onValueChange = { it ->
-                    if (it.length <= 9){
+                    if (it.length <= 9) {
                         text = it.filter { it.isDigit() }
                     }
                 },
@@ -100,74 +107,62 @@ fun CustomEdit():String {
     return text
 }
 
-@Composable
- fun DuckieTextField(
-    text: String,
-    onTextChanged: (String) -> Unit,
-) {
-    BasicTextField(
-        value = text,
-        onValueChange = onTextChanged,
-        decorationBox = {
-            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                text.forEachIndexed { index, char ->
-                    DuckieTextFieldCharContainer(
-                        text = char,
-                        isFocused = index == text.lastIndex,
-                    )
-                }
-
-                repeat(8-4) {
-                    DuckieTextFieldCharContainer(
-                        text = ' ',
-                        isFocused =true,
-                    )
-                }
-            }
-        },
-    )
-}
-
-@Composable
-private fun DuckieTextFieldCharContainer(
-    modifier: Modifier = Modifier,
-    text: Char,
-    isFocused: Boolean,
-) {
-    val shape = remember { RoundedCornerShape(8.dp) }
-
-    Box(
-        modifier = modifier
-            .size(
-                width = 40.dp,
-                height = 52.dp,
-            )
-            .background(
-                color = colorResource(id = R.color.edtColor),
-                shape = shape,
-            )
-            .run {
-                if (isFocused) {
-                    border(
-                        width = 1.dp,
-                        color = Color(0xFFFF8300),
-                        shape = shape,
-                    )
-                } else {
-                    this
-                }
-            },
-        contentAlignment = Alignment.Center,
-    ) {
-        Text(text = text.toString())
-    }
-}
 
 @Preview(showSystemUi = true)
 @Composable
-private fun UIedt() {
-    Column {
+private fun UIEdt() {
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.spacedBy(20.dp)
+    ) {
         CustomEdit()
-        DuckieTextField(text = "") {}
+        PinView()
     }
+}
+
+@Composable
+fun PinView() {
+    var text by remember {
+        mutableStateOf("")
+    }
+
+    BasicTextField(value = text, onValueChange = {
+            if (it.length <= 4) {
+                text = it
+            }
+        }, keyboardOptions = KeyboardOptions(
+            keyboardType = KeyboardType.NumberPassword,
+            autoCorrect = true
+        ),) {
+        Row(
+            horizontalArrangement = Arrangement.spacedBy(10.dp)
+        ) {
+            repeat(4) { index ->
+                val number = when {
+                    index >= text.length -> ""
+                    else -> text[index]
+                }
+                    Box(modifier = Modifier
+                        .height(52.dp)
+                        .width(40.dp)
+                        .clip(RoundedCornerShape(10.dp))
+                    ){
+                        Column(
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .background(colorResource(id = R.color.edtColor)),
+                            verticalArrangement = Arrangement.Center,
+                            horizontalAlignment = Alignment.CenterHorizontally,
+                        ) {
+                            Text(
+                                text = number.toString(),
+                                color = Color.Black,
+                                fontSize = 18.sp
+                            )
+                    }
+                }
+            }
+        }
+    }
+
 }

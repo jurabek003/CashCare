@@ -37,8 +37,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.yogeshpaliyal.speld.PinInput
 import uz.turgunboyevjurabek.cashcare.R
-import uz.turgunboyevjurabek.cashcare.View.UIElements.CustomEdit
-import uz.turgunboyevjurabek.cashcare.View.UIElements.DuckieTextField
+
+
+import uz.turgunboyevjurabek.cashcare.View.UIElements.PinView
 
 
 @Composable
@@ -91,9 +92,9 @@ fun InputSmsScreen() {
         ) {
 
             val text = remember { mutableStateOf("") }
-            DuckieTextField(text = text.value) {
-                text.value=it
-            }
+            PinView()
+
+
         }
         Row(
             modifier = Modifier
