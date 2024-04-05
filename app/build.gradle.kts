@@ -1,6 +1,8 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("kotlin-kapt")
+    id ("com.google.dagger.hilt.android")
 }
 
 android {
@@ -30,11 +32,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "17"
     }
     buildFeatures {
         compose = true
@@ -71,6 +73,51 @@ dependencies {
      * PinView
      */
     implementation ("com.yogeshpaliyal:speld:1.0.0")
+    /**
+     * For Shape
+     */
+    implementation ("androidx.graphics:graphics-shapes:1.0.0-alpha05")
 
+    /**
+     * For Navigation
+     */
+    implementation ("androidx.navigation:navigation-compose:2.7.7")
+
+    /**
+     * Dagger-hilt
+     */
+    implementation ("com.google.dagger:hilt-android:2.49")
+    kapt ("com.google.dagger:hilt-compiler:2.48")
+    implementation ("androidx.hilt:hilt-navigation-fragment:1.2.0")
+    implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
+
+    /**
+     * Retrofit for API requests
+     */
+    implementation ("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation ("com.squareup.retrofit2:converter-moshi:2.4.0")
+
+    /**
+     * ViewModel
+     */
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.7.0")
+
+    /**
+     * Kotlin Coroutines
+     */
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.1")
+
+    /**
+     * Room database
+     */
+    implementation("androidx.room:room-runtime:2.6.1")
+    implementation("androidx.room:room-ktx:2.6.1")
+    kapt("androidx.room:room-compiler:2.6.1")
+
+    /**
+     * DataStore
+     */
+    implementation("androidx.datastore:datastore-preferences:1.0.0")
 
 }

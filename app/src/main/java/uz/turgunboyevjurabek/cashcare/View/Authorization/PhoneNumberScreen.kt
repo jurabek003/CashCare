@@ -34,11 +34,13 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import uz.turgunboyevjurabek.cashcare.R
 import uz.turgunboyevjurabek.cashcare.View.UIElements.CustomEdit
 
 @Composable
-fun PhoneNumberScreen() {
+fun PhoneNumberScreen(navController: NavController) {
     Column(
         modifier = Modifier
             .fillMaxSize(),
@@ -111,7 +113,7 @@ fun PhoneNumberScreen() {
                     contentColor = Color.White,
                 ),
                 onClick = {
-
+                    navController.navigate("InputSmsScreen")
                 }) {
                 Text(text = "Boshlash", fontSize = 12.sp)
             }
@@ -126,5 +128,6 @@ fun PhoneNumberScreen() {
 @Preview(showSystemUi = true)
 @Composable
 private fun UIPhoneNumber() {
-    PhoneNumberScreen()
+    val navController= rememberNavController()
+    PhoneNumberScreen(navController)
 }

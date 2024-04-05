@@ -32,9 +32,11 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import uz.turgunboyevjurabek.cashcare.R
 @Composable
-fun LanguageScreen() {
+fun LanguageScreen(navController: NavController) {
     Column(
         modifier = Modifier
             .fillMaxSize(),
@@ -207,7 +209,7 @@ fun LanguageScreen() {
                     contentColor =Color.White,
                 ),
                 onClick = {
-
+                    navController.navigate("PhoneNumberScreen")
                 }) {
                 Text(text = "Boshlash", fontSize = 12.sp)
             }
@@ -222,6 +224,7 @@ fun LanguageScreen() {
 @Preview()
 @Composable
 fun LanguageUI() {
-    LanguageScreen()
+    val navController= rememberNavController()
+    LanguageScreen(navController)
 
 }

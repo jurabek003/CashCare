@@ -35,6 +35,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.yogeshpaliyal.speld.PinInput
 import uz.turgunboyevjurabek.cashcare.R
 
@@ -43,7 +45,7 @@ import uz.turgunboyevjurabek.cashcare.View.UIElements.PinView
 
 
 @Composable
-fun InputSmsScreen() {
+fun InputSmsScreen(navController: NavController) {
     Column(
         modifier = Modifier
             .fillMaxSize(),
@@ -132,6 +134,7 @@ fun InputSmsScreen() {
 @Preview(showSystemUi = true)
 @Composable
 private fun SmsScreenUi() {
-    InputSmsScreen()
+    val navController= rememberNavController()
+    InputSmsScreen(navController)
 
 }

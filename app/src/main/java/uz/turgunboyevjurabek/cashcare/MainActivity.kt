@@ -9,8 +9,14 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.compose.rememberNavController
+import uz.turgunboyevjurabek.cashcare.Model.AuthNavigation.AuthNavigation
 import uz.turgunboyevjurabek.cashcare.View.Authorization.InputSmsScreen
 import uz.turgunboyevjurabek.cashcare.ui.theme.CashCareTheme
 
@@ -25,11 +31,13 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
+                    val navController = rememberNavController()
+                    var screenName by rememberSaveable {
+                        mutableStateOf("Asosiy")
+                    }
+
                 Column {
-//                    WelcomeScreen()
-//                    LanguageScreen()
-//                    PhoneNumberScreen()
-                      InputSmsScreen()
+                    AuthNavigation()
                     }
                 }
             }
