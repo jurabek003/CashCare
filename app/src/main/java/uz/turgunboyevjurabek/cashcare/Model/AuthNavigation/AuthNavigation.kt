@@ -9,6 +9,7 @@ import androidx.navigation.compose.rememberNavController
 import uz.turgunboyevjurabek.cashcare.View.Authorization.InputSmsScreen
 import uz.turgunboyevjurabek.cashcare.View.Authorization.LanguageScreen
 import uz.turgunboyevjurabek.cashcare.View.Authorization.PhoneNumberScreen
+import uz.turgunboyevjurabek.cashcare.View.Authorization.RegisterScreen
 import uz.turgunboyevjurabek.cashcare.View.Authorization.WelcomeScreen
 
 @Composable
@@ -27,6 +28,9 @@ fun AuthNavigation() {
         }
         composable("InputSmsScreen"){
             InputSmsScreen(navController = navHostController)
+        }
+        composable("RegisterScreen"){
+            RegisterScreen(navController = navHostController)
         }
 
     }

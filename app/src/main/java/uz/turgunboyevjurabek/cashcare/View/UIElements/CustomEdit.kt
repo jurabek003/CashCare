@@ -31,6 +31,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
@@ -117,6 +118,50 @@ private fun UIEdt() {
     ) {
         CustomEdit()
         PinView()
+        NameEdit()
+    }
+}
+
+@Composable
+fun NameEdit() {
+    var text by remember {
+        mutableStateOf("")
+    }
+
+    Box( modifier = Modifier
+        .fillMaxWidth()
+        .height(50.dp)
+        .clip(RoundedCornerShape(10.dp))
+    ){
+        Row(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(colorResource(id = R.color.edtColor)),
+            verticalAlignment = Alignment.CenterVertically,
+        ){
+
+            BasicTextField(
+                keyboardActions = KeyboardActions.Default,
+                value = text,
+                onValueChange = { it ->
+                   text=it
+                },
+                textStyle = TextStyle(fontSize = 18.sp, fontWeight = FontWeight.SemiBold),
+                maxLines = 1,
+                modifier = Modifier
+                    .fillMaxWidth(),
+            ){
+                if (text.isEmpty()) {
+                    Text(
+                        text = "Ism",
+                        color = Color.Black,
+                        modifier = Modifier.alpha(0.4f)
+                            .padding(start = 15.dp)
+                    )
+                }
+            }
+
+        }
     }
 }
 

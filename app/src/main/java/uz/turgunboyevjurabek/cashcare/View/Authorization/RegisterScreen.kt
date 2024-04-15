@@ -1,9 +1,6 @@
 package uz.turgunboyevjurabek.cashcare.View.Authorization
 
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -13,9 +10,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Text
@@ -26,7 +21,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
@@ -37,29 +31,27 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import com.yogeshpaliyal.speld.PinInput
 import uz.turgunboyevjurabek.cashcare.R
-
-
-import uz.turgunboyevjurabek.cashcare.View.UIElements.PinView
-
+import uz.turgunboyevjurabek.cashcare.View.UIElements.CustomEdit
+import uz.turgunboyevjurabek.cashcare.View.UIElements.NameEdit
 
 @Composable
-fun InputSmsScreen(navController: NavController) {
+fun RegisterScreen(navController: NavController) {
     Column(
         modifier = Modifier
             .fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
-        var sms by remember {
+        var son by remember {
             mutableStateOf("")
         }
         Row(
             modifier = Modifier
                 .fillMaxWidth()
                 .weight(1f)
-        ) {}
+        ) {
+        }
 
         Box(
             modifier = Modifier
@@ -75,7 +67,7 @@ fun InputSmsScreen(navController: NavController) {
                     .size(20.dp)
             )
             Text(
-                text = "Sms kodni kiriting",
+                text = "Ro’yxatdan o’ting",
                 fontWeight = FontWeight.ExtraBold,
                 fontSize = 20.sp,
                 modifier = Modifier
@@ -90,13 +82,10 @@ fun InputSmsScreen(navController: NavController) {
                 .fillMaxWidth()
                 .weight(2f)
                 .padding(start = 20.dp, end = 20.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
         ) {
 
-            val text = remember { mutableStateOf("") }
-            PinView()
-
-
+            NameEdit()
+            val context= LocalContext.current
         }
         Row(
             modifier = Modifier
@@ -111,15 +100,14 @@ fun InputSmsScreen(navController: NavController) {
                     .height(45.dp),
                 shape = RoundedCornerShape(10.dp),
                 colors = ButtonDefaults.buttonColors(
-                    containerColor =  if (sms != ""){
+                    containerColor =  if (son != ""){
                         colorResource(id = R.color.bacUI)
                     }else{
                         Color.Cyan
                     },
-                    contentColor = Color.White,
                 ),
                 onClick = {
-                    navController.navigate("RegisterScreen")
+                    navController.navigate("InputSmsScreen")
                 }) {
                 Text(text = "Boshlash", fontSize = 12.sp)
             }
@@ -128,13 +116,12 @@ fun InputSmsScreen(navController: NavController) {
 
 
     }
-
 }
 
 @Preview(showSystemUi = true)
 @Composable
-private fun SmsScreenUi() {
+private fun UIRegister() {
     val navController= rememberNavController()
-    InputSmsScreen(navController)
-
+    RegisterScreen(navController = navController)
+    
 }
