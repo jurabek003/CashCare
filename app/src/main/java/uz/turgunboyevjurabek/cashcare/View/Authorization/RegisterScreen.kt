@@ -1,19 +1,29 @@
 package uz.turgunboyevjurabek.cashcare.View.Authorization
 
+import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
+import androidx.compose.material3.Divider
+import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -22,6 +32,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
@@ -32,6 +44,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import uz.turgunboyevjurabek.cashcare.Model.madels.RegionName
 import uz.turgunboyevjurabek.cashcare.R
 import uz.turgunboyevjurabek.cashcare.View.UIElements.CustomEdit
 import uz.turgunboyevjurabek.cashcare.View.UIElements.NameEdit
@@ -57,8 +70,8 @@ fun RegisterScreen(navController: NavController) {
         Box(
             modifier = Modifier
                 .height(32.dp)
-                .padding(top = 100.dp)
-                .weight(1.5f)
+                .padding(top = 10.dp)
+                .weight(0.5f)
                 .align(Alignment.CenterHorizontally)
         ){
             Image(
@@ -82,13 +95,13 @@ fun RegisterScreen(navController: NavController) {
             modifier = Modifier
                 .fillMaxWidth()
                 .weight(2f)
-                .padding(start = 20.dp, end = 20.dp),
+            ,
         ) {
             Text(
                 text = "Ismingizni kiriting",
                 fontSize = 12.sp,
                 modifier = Modifier
-                    .padding(3.dp)
+                    .padding(start = 20.dp)
             )
             NameEdit()
             SelectRegionCard()
@@ -104,7 +117,7 @@ fun RegisterScreen(navController: NavController) {
             Button(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(bottom = 15.dp, end = 20.dp, start = 20.dp)
+                    .padding(20.dp)
                     .height(45.dp),
                 shape = RoundedCornerShape(10.dp),
                 colors = ButtonDefaults.buttonColors(
@@ -128,10 +141,84 @@ fun RegisterScreen(navController: NavController) {
 
 @Composable
 fun SelectRegionCard() {
+    var expendedState by remember {
+        mutableStateOf(false)
+    }
+
+    val rotationState by animateFloatAsState(
+        if (expendedState) 180f else 0f, label = ""
+    )
+
     Card(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(start = 20.dp, end = 20.dp, top = 20.dp)
+
 
     ) {
+        Column(
+            modifier = Modifier
+                .background(Color.White)
+                .fillMaxWidth()
+        ) {
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 10.dp),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Text(
+                    text = "Viloyatni tanlash",
+                    fontSize = 14.sp,
+                    fontWeight = FontWeight.SemiBold,
+                    modifier = Modifier
+                        .padding(vertical = 20.dp)
+                )
+                IconButton(
+                    onClick = { expendedState = !expendedState },
+                    modifier = Modifier
+                        .alpha(0.8f)
+                        .rotate(rotationState)
 
+                ) {
+                    Icon(imageVector = Icons.Default.ArrowDropDown, contentDescription = null)
+                }
+            }
+            val list=ArrayList<RegionName>()
+            list.addAll(listOf(
+                RegionName("Farg'ona"),
+                RegionName("Andijon"),
+                RegionName("Namangan"),
+                RegionName("Jizzax"),
+                RegionName("Xorazm"),
+                RegionName("Samarqand"),
+                RegionName("Toshkent"),
+                RegionName("Guliston"),
+                RegionName("Sirdaryo"),
+                RegionName("Qashqadaryo"),
+                RegionName("Sirdaryo"),
+                RegionName("Xiva"),
+            ))
+            if (expendedState){
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .fillMaxHeight()
+                ) {
+                    LazyColumn(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                    ) {
+                        items(list.size){
+                            Text(text = list[it].name, modifier = Modifier.padding(5.dp))
+                            HorizontalDivider(modifier = Modifier.height(1.dp).fillMaxWidth())
+                        }
+                    }
+                }
+
+            }
+        }
     }
     
 }

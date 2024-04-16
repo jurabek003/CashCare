@@ -164,8 +164,8 @@ fun WelcomeScreen(navController: NavController) {
               Button(
                   modifier = Modifier
                       .fillMaxWidth()
-                      .padding(12.dp)
-                      .height(40.dp),
+                      .padding(20.dp)
+                      .height(45.dp),
                   shape = RoundedCornerShape(10.dp),
                   colors = ButtonDefaults.buttonColors(
                       containerColor = Color.White,
@@ -179,13 +179,15 @@ fun WelcomeScreen(navController: NavController) {
               Box(
                   modifier = Modifier
                       .align(Alignment.TopEnd)
+                      .size(45.dp)
 
               ){
                   Image(
                       painter = painterResource(id = R.drawable.ic_ellipse1),
                       contentDescription = null,
                       Modifier
-                          .size(35.dp)
+                          .fillMaxSize()
+
                   )
               }
           }

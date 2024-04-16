@@ -164,6 +164,7 @@ fun NameEdit() {
         ),
         modifier = Modifier
             .fillMaxWidth()
+            .padding(horizontal = 20.dp)
             .focusRequester(focusRequester)
             .onFocusChanged { inputIsFocused = it.isFocused }
 

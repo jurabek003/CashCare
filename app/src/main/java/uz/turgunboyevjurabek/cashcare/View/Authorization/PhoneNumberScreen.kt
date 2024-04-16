@@ -61,8 +61,8 @@ fun PhoneNumberScreen(navController: NavController) {
         Box(
             modifier = Modifier
                 .height(32.dp)
-                .padding(top = 100.dp)
-                .weight(1.5f)
+                .padding(top = 10.dp)
+                .weight(0.5f)
                 .align(Alignment.CenterHorizontally)
         ){
             Image(
@@ -101,7 +101,7 @@ fun PhoneNumberScreen(navController: NavController) {
             Button(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(bottom = 15.dp, end = 20.dp, start = 20.dp)
+                    .padding(20.dp)
                     .height(45.dp),
                 shape = RoundedCornerShape(10.dp),
                 colors = ButtonDefaults.buttonColors(

@@ -54,8 +54,8 @@ fun LanguageScreen(navController: NavController) {
         Box(
             modifier = Modifier
                 .height(32.dp)
-                .padding(top = 100.dp)
-                .weight(1.5f)
+                .padding(top = 10.dp)
+                .weight(0.5f)
                 .align(Alignment.CenterHorizontally)
         ){
             Image(
@@ -201,27 +201,26 @@ fun LanguageScreen(navController: NavController) {
             Button(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(12.dp)
-                    .height(40.dp),
+                    .padding(20.dp)
+                    .height(45.dp),
                 shape = RoundedCornerShape(10.dp),
                 colors = ButtonDefaults.buttonColors(
                     containerColor = colorResource(id = R.color.bacUI),
-                    contentColor =Color.White,
+                    contentColor = Color.White,
                 ),
                 onClick = {
-                    navController.navigate("PhoneNumberScreen")
+                    navController.navigate("InputSmsScreen")
                 }) {
-                Text(text = "Boshlash", fontSize = 12.sp)
+                Text(text = "Davom etish", fontSize = 12.sp)
             }
 
         }
-
 
     }
 
 }
 
-@Preview()
+@Preview(showSystemUi = true)
 @Composable
 fun LanguageUI() {
     val navController= rememberNavController()
