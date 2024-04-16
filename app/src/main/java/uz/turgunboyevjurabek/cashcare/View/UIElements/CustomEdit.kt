@@ -1,7 +1,8 @@
-@file:OptIn(ExperimentalMaterial3Api::class)
+@file:OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
 
 package uz.turgunboyevjurabek.cashcare.View.UIElements
 
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -20,10 +21,13 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.text2.BasicTextField2
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
+import androidx.compose.material3.contentColorFor
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -127,42 +131,43 @@ fun NameEdit() {
     var text by remember {
         mutableStateOf("")
     }
-
-    Box( modifier = Modifier
-        .fillMaxWidth()
-        .height(50.dp)
-        .clip(RoundedCornerShape(10.dp))
-    ){
-        Row(
-            modifier = Modifier
-                .fillMaxSize()
-                .background(colorResource(id = R.color.edtColor)),
-            verticalAlignment = Alignment.CenterVertically,
-        ){
-
-            BasicTextField(
-                keyboardActions = KeyboardActions.Default,
-                value = text,
-                onValueChange = { it ->
-                   text=it
-                },
-                textStyle = TextStyle(fontSize = 18.sp, fontWeight = FontWeight.SemiBold),
-                maxLines = 1,
-                modifier = Modifier
-                    .fillMaxWidth(),
-            ){
-                if (text.isEmpty()) {
-                    Text(
-                        text = "Ism",
-                        color = Color.Black,
-                        modifier = Modifier.alpha(0.4f)
-                            .padding(start = 15.dp)
-                    )
-                }
-            }
-
-        }
+    val focusRequester = remember {
+        FocusRequester()
     }
+
+    var inputIsFocused by remember {
+        mutableStateOf(false)
+    }
+
+    TextField(
+        keyboardActions = KeyboardActions.Default,
+        value = text,
+        onValueChange = { it ->
+            text = it
+        },
+        placeholder = {
+            Text(
+                text = "Ism",
+                color = Color.Black,
+                modifier = Modifier.alpha(0.4f)
+            )
+        },
+        colors = TextFieldDefaults.colors(
+            focusedIndicatorColor = Color.Transparent,
+            unfocusedIndicatorColor = Color.Transparent,
+        ),
+        shape = RoundedCornerShape(10.dp),
+        textStyle = TextStyle(
+            fontSize = 18.sp,
+            fontWeight = FontWeight.SemiBold,
+            color = Color.Black
+        ),
+        modifier = Modifier
+            .fillMaxWidth()
+            .focusRequester(focusRequester)
+            .onFocusChanged { inputIsFocused = it.isFocused }
+
+    )
 }
 
 @Composable
@@ -171,14 +176,18 @@ fun PinView() {
         mutableStateOf("")
     }
 
-    BasicTextField(value = text, onValueChange = {
+    BasicTextField(
+        value = text,
+        onValueChange = {
             if (it.length <= 4) {
                 text = it
             }
-        }, keyboardOptions = KeyboardOptions(
+        },
+        keyboardOptions = KeyboardOptions(
             keyboardType = KeyboardType.NumberPassword,
             autoCorrect = true
-        ),) {
+        ),
+    ) {
         Row(
             horizontalArrangement = Arrangement.spacedBy(10.dp)
         ) {
@@ -187,23 +196,24 @@ fun PinView() {
                     index >= text.length -> ""
                     else -> text[index]
                 }
-                    Box(modifier = Modifier
+                Box(
+                    modifier = Modifier
                         .height(52.dp)
                         .width(40.dp)
                         .clip(RoundedCornerShape(10.dp))
-                    ){
-                        Column(
-                            modifier = Modifier
-                                .fillMaxSize()
-                                .background(colorResource(id = R.color.edtColor)),
-                            verticalArrangement = Arrangement.Center,
-                            horizontalAlignment = Alignment.CenterHorizontally,
-                        ) {
-                            Text(
-                                text = number.toString(),
-                                color = Color.Black,
-                                fontSize = 18.sp
-                            )
+                ) {
+                    Column(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .background(colorResource(id = R.color.edtColor)),
+                        verticalArrangement = Arrangement.Center,
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                    ) {
+                        Text(
+                            text = number.toString(),
+                            color = Color.Black,
+                            fontSize = 18.sp
+                        )
                     }
                 }
             }
