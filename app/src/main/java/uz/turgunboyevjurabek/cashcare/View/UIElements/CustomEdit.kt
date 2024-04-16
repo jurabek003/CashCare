@@ -9,6 +9,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -127,7 +128,7 @@ private fun UIEdt() {
 }
 
 @Composable
-fun NameEdit() {
+fun NameEdit():String {
     var text by remember {
         mutableStateOf("")
     }
@@ -149,7 +150,8 @@ fun NameEdit() {
             Text(
                 text = "Ism",
                 color = Color.Black,
-                modifier = Modifier.alpha(0.4f)
+                modifier = Modifier.alpha(0.4f),
+                fontSize = 18.sp
             )
         },
         colors = TextFieldDefaults.colors(
@@ -162,13 +164,17 @@ fun NameEdit() {
             fontWeight = FontWeight.SemiBold,
             color = Color.Black
         ),
+        maxLines = 1,
+        singleLine = true,
         modifier = Modifier
             .fillMaxWidth()
+            .height(55.dp)
             .padding(horizontal = 20.dp)
             .focusRequester(focusRequester)
             .onFocusChanged { inputIsFocused = it.isFocused }
 
     )
+    return text
 }
 
 @Composable
