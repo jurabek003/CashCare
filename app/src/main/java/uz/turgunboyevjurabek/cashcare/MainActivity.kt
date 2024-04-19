@@ -18,6 +18,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.rememberNavController
 import uz.turgunboyevjurabek.cashcare.Model.AuthNavigation.AuthNavigation
 import uz.turgunboyevjurabek.cashcare.View.Authorization.InputSmsScreen
+import uz.turgunboyevjurabek.cashcare.View.home.HomeScreen
 import uz.turgunboyevjurabek.cashcare.ui.theme.CashCareTheme
 
 class MainActivity : ComponentActivity() {
@@ -37,7 +38,8 @@ class MainActivity : ComponentActivity() {
                     }
 
                 Column {
-                    AuthNavigation()
+//                    AuthNavigation()
+                    HomeScreen()
                     }
                 }
             }

@@ -209,7 +209,7 @@ fun LanguageScreen(navController: NavController) {
                     contentColor = Color.White,
                 ),
                 onClick = {
-                    navController.navigate("InputSmsScreen")
+                    navController.navigate("PhoneNumberScreen")
                 }) {
                 Text(text = "Davom etish", fontSize = 12.sp)
             }

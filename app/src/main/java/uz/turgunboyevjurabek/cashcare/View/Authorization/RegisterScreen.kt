@@ -107,10 +107,8 @@ fun RegisterScreen(navController: NavController) {
                 modifier = Modifier
                     .padding(start = 20.dp)
             )
-
             userName=NameEdit()
             SelectRegionCard()
-            
             val context= LocalContext.current
         }
         Row(

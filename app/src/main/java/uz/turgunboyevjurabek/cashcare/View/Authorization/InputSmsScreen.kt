@@ -83,8 +83,6 @@ fun InputSmsScreen(navController: NavController) {
             )
         }
 
-
-
         Column(
             modifier = Modifier
                 .fillMaxWidth()
