@@ -1,4 +1,6 @@
-@file:OptIn(ExperimentalMaterial3Api::class, ExperimentalMaterial3Api::class,
+@file:OptIn(
+    ExperimentalMaterial3Api::class,
+    ExperimentalMaterial3Api::class,
     ExperimentalMaterial3Api::class
 )
 
@@ -18,6 +20,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -25,6 +28,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -60,7 +64,7 @@ fun HomeScreen() {
                             .width(26.dp)
                     )
                 }
-                IconButton(onClick = {  }) {
+                IconButton(onClick = { }) {
                     Icon(
                         painter = painterResource(id = R.drawable.ic_search),
                         contentDescription = "filterButton",
@@ -77,14 +81,12 @@ fun HomeScreen() {
                 modifier = Modifier.padding(paddingValues)
             ) {
                 Column(
-                    modifier = Modifier
-                        .fillMaxWidth(),
+                    modifier = Modifier.fillMaxWidth(),
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     Box(
-                        modifier = Modifier
-                            .height(120.dp)
-                    ){
+                        modifier = Modifier.height(120.dp)
+                    ) {
                         Image(
                             painter = painterResource(id = R.drawable.ellipse_bac),
                             contentDescription = null,
@@ -105,14 +107,12 @@ fun HomeScreen() {
                             Text(
                                 text = "Umumiy qarzingiz",
                                 fontSize = 12.sp,
-                                modifier = Modifier
-                                    .alpha(0.6f)
-
+                                modifier = Modifier.alpha(0.6f)
                             )
                             Row(
-                                modifier = Modifier,
-                                horizontalArrangement = Arrangement.spacedBy(20.dp, alignment = Alignment.CenterHorizontally),
-                                verticalAlignment = Alignment.CenterVertically
+                                modifier = Modifier, horizontalArrangement = Arrangement.spacedBy(
+                                    20.dp, alignment = Alignment.CenterHorizontally
+                                ), verticalAlignment = Alignment.CenterVertically
                             ) {
                                 Text(
                                     text = "25 000 so’m",
@@ -124,14 +124,47 @@ fun HomeScreen() {
                                     Icon(
                                         painter = painterResource(id = R.drawable.eye_on),
                                         contentDescription = "Eye on",
-                                        modifier = Modifier
-                                            .size(30.dp)
+                                        modifier = Modifier.size(30.dp)
                                     )
                                 }
                             }
 
                         }
 
+                    }
+                }
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 20.dp),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Text(
+                        text = "Qarzdorlar", fontSize = 16.sp, fontWeight = FontWeight.Bold
+                    )
+                    TextButton(
+                        onClick = {
+
+                        }
+                    ){
+                        Text(
+                            text = "Barchasi",
+                            fontSize = 12.sp,
+                            fontWeight = FontWeight.Bold,
+                            color = colorResource(id = R.color.color1)
+                        )
+                    }
+                }
+
+                LazyRow(
+                    modifier = Modifier
+                        .padding(horizontal = 10.dp)
+                        .fillMaxWidth(),
+                    horizontalArrangement = Arrangement.spacedBy(20.dp)
+                ) {
+                    items(5){
+                        HorizontalDeptListUI()
                     }
                 }
 
@@ -144,7 +177,6 @@ fun HomeScreen() {
 @Preview(showSystemUi = true)
 @Composable
 private fun HomeUI() {
-
     HomeScreen()
-
 }
+
