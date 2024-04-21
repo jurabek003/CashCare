@@ -12,6 +12,7 @@
     <color name="color1">#9AE3AC</color>
     <color name="color_minus">#FF4B4B</color>
     <color name="color_plus">#4BFF2E</color>
+    <color name="ic_unselect">#787877</color>
 
 
 </resources>

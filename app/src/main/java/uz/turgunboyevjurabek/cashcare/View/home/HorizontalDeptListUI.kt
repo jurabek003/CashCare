@@ -5,8 +5,11 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -29,8 +32,8 @@ fun HorizontalDeptListUI() {
 
     Box(
         modifier = Modifier
-            .width(100.dp)
-            .height(160.dp)
+            .width(120.dp)
+            .height(180.dp)
             .clip(RoundedCornerShape(12.dp))
     ){
         Column(
@@ -38,32 +41,35 @@ fun HorizontalDeptListUI() {
                 .fillMaxSize()
                 .background(color = colorResource(id = R.color.color1)),
             horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.spacedBy(10.dp, alignment = Alignment.CenterVertically)
+            verticalArrangement = Arrangement.Center
+
         ) {
+            Spacer(modifier = Modifier.height(10.dp).fillMaxWidth())
             Image(
                 painter = painterResource(id = R.drawable.avatar),
                 contentDescription = null,
                 modifier = Modifier
-                    .size(40.dp)
+                    .size(65.dp)
             )
             Text(
                 text = "Ma’rufjon",
                 fontWeight = FontWeight.Medium,
-                fontSize = 12.sp,
+                fontSize = 15.sp,
                 color = Color.White
             )
              Text(
                 text = "2-dekabr, 2023",
                 fontWeight = FontWeight.Normal,
-                fontSize = 10.sp,
+                fontSize = 12.sp,
                 color = Color.White
             )
 
             Box(
                 modifier = Modifier
-                    .height(20.dp)
-                    .width(76.dp)
-                    .clip(RoundedCornerShape(7.dp))
+                    .height(27.dp)
+                    .width(86.dp)
+                    .clip(RoundedCornerShape(8.dp)),
+
             ){
                 Column(
                     modifier = Modifier
@@ -74,12 +80,12 @@ fun HorizontalDeptListUI() {
                 ) {
                     Text(
                         text = "-12 000 so’m",
-                        fontSize = 8.sp,
-                        color = colorResource(id = R.color.color_minus)
+                        fontSize = 10.sp,
+                        color = colorResource(id = R.color.color_minus),
                     )
                 }
             }
-
+            Spacer(modifier = Modifier.height(10.dp).fillMaxWidth())
         }
 
     }

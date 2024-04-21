@@ -9,6 +9,7 @@ package uz.turgunboyevjurabek.cashcare.View.home
 import android.annotation.SuppressLint
 import android.app.ActionBar
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -26,15 +27,23 @@ import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.NavigationBar
+import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.NavigationBarItemColors
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.paint
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.modifier.modifierLocalMapOf
 import androidx.compose.ui.res.colorResource
@@ -43,15 +52,52 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import uz.turgunboyevjurabek.cashcare.Model.madels.BottomNavigationItem
 import uz.turgunboyevjurabek.cashcare.R
 
-@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
+@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter", "AutoboxingStateCreation")
 @Composable
 fun HomeScreen() {
     Column(
         modifier = Modifier.fillMaxSize()
     ) {
-        Scaffold(modifier = Modifier.fillMaxSize(), topBar = {
+        val items = listOf(
+            BottomNavigationItem(
+                selectedIcon = painterResource(id = R.drawable.home_select),
+                unselectedIcon = painterResource(id = R.drawable.home_select),
+                screenRout = "HomeScreen",
+
+            ),
+            BottomNavigationItem(
+                selectedIcon = painterResource(id = R.drawable.chart_unselect),
+                unselectedIcon = painterResource(id = R.drawable.chart_unselect),
+                screenRout = "ChartScreen",
+
+            ),
+            BottomNavigationItem(
+                selectedIcon = painterResource(id = R.drawable.circle_plus),
+                unselectedIcon = painterResource(id = R.drawable.circle_plus),
+                screenRout = "AddScreen",
+
+            ),
+            BottomNavigationItem(
+                selectedIcon = painterResource(id = R.drawable.vector),
+                unselectedIcon = painterResource(id = R.drawable.vector),
+                screenRout = "StoryScreen",
+
+            ),
+            BottomNavigationItem(
+                selectedIcon = painterResource(id = R.drawable.settings),
+                unselectedIcon = painterResource(id = R.drawable.settings),
+                screenRout = "SettingsScreen",
+
+            ),
+        )
+
+        Scaffold(
+            modifier = Modifier
+                .fillMaxSize(),
+            topBar = {
             TopAppBar(title = {
                 Text(text = "LOGO")
             }, actions = {
@@ -72,11 +118,40 @@ fun HomeScreen() {
                             .height(26.dp)
                             .width(26.dp)
                     )
+                } }
+            )
+},
+            bottomBar = {
+                var selectedTabIndex by rememberSaveable {
+                    mutableStateOf(0)
+                }
+
+                NavigationBar {
+                    items.forEachIndexed { index, bottomNavigationItem ->
+                        NavigationBarItem(
+                            selected = selectedTabIndex==index,
+                            onClick = {
+                                selectedTabIndex = index
+                            },
+
+                            icon = {
+                                Icon(
+                                    painter =bottomNavigationItem.selectedIcon,
+                                    contentDescription =null,
+                                    modifier = Modifier
+                                        .size(if (index==2) 55.dp else 25.dp ),
+                                    tint = if (selectedTabIndex==index)
+                                        colorResource(id = R.color.color1)
+                                    else colorResource(
+                                        id = R.color.ic_unselect
+                                    )
+                                )
+                            })
+                    }
                 }
             }
 
-            )
-        }) { paddingValues ->
+        ) { paddingValues ->
             Column(
                 modifier = Modifier.padding(paddingValues)
             ) {
