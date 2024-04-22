@@ -10,10 +10,13 @@ import android.annotation.SuppressLint
 import android.app.ActionBar
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -22,18 +25,23 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.selection.selectable
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.LocalAbsoluteTonalElevation
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.NavigationBarItemColors
+import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.surfaceColorAtElevation
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -43,6 +51,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.paint
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.modifier.modifierLocalMapOf
@@ -75,8 +84,8 @@ fun HomeScreen() {
 
             ),
             BottomNavigationItem(
-                selectedIcon = painterResource(id = R.drawable.circle_plus),
-                unselectedIcon = painterResource(id = R.drawable.circle_plus),
+                selectedIcon = painterResource(id = R.drawable.circle_plus2),
+                unselectedIcon = painterResource(id = R.drawable.circle_plus2),
                 screenRout = "AddScreen",
 
             ),
@@ -126,29 +135,43 @@ fun HomeScreen() {
                     mutableStateOf(0)
                 }
 
-                NavigationBar {
-                    items.forEachIndexed { index, bottomNavigationItem ->
-                        NavigationBarItem(
-                            selected = selectedTabIndex==index,
-                            onClick = {
-                                selectedTabIndex = index
-                            },
+                    NavigationBar(
+                        tonalElevation = 0.dp,
+                        modifier = Modifier
 
-                            icon = {
-                                Icon(
-                                    painter =bottomNavigationItem.selectedIcon,
-                                    contentDescription =null,
-                                    modifier = Modifier
-                                        .size(if (index==2) 55.dp else 25.dp ),
-                                    tint = if (selectedTabIndex==index)
-                                        colorResource(id = R.color.color1)
-                                    else colorResource(
-                                        id = R.color.ic_unselect
+                    ) {
+                        items.forEachIndexed { index, bottomNavigationItem ->
+                            NavigationBarItem(
+                                selected = selectedTabIndex==index,
+                                onClick = {
+                                    selectedTabIndex = index
+                                },
+                                alwaysShowLabel = false,
+
+                                colors = NavigationBarItemDefaults.colors(
+                                    indicatorColor = MaterialTheme.colorScheme.surfaceColorAtElevation(LocalAbsoluteTonalElevation.current),
+                                ),
+                                icon = {
+
+                                    Icon(
+                                        painter =bottomNavigationItem.selectedIcon,
+                                        contentDescription =null,
+                                        modifier = Modifier
+                                            .size(if (index==2) 55.dp else 25.dp ),
+                                        tint = if (index==2) colorResource(id = R.color.color1)
+                                        else{
+                                            if (selectedTabIndex==index)
+                                                colorResource(id = R.color.color1)
+                                            else colorResource(
+                                                id = R.color.ic_unselect
+                                            )
+                                        }
                                     )
-                                )
-                            })
+                                })
+                        }
                     }
-                }
+
+
             }
 
         ) { paddingValues ->
