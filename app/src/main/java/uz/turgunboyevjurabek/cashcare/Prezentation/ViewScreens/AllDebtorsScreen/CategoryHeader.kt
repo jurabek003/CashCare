@@ -18,7 +18,8 @@ fun CategoryHeader(
     text: String,
     modifier: Modifier = Modifier
         .fillMaxWidth()
-        .background(color = if (isSystemInDarkTheme()) Color.Black else Color.White)
+        .background(color = MaterialTheme.colorScheme.background )
+//if (isSystemInDarkTheme()) Color.Black else Color.White
 ) {
     Text(
         text = text,
