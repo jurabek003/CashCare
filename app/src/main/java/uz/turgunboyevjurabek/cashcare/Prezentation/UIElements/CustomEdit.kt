@@ -1,6 +1,6 @@
 @file:OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
 
-package uz.turgunboyevjurabek.cashcare.View.UIElements
+package uz.turgunboyevjurabek.cashcare.Prezentation.UIElements
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background

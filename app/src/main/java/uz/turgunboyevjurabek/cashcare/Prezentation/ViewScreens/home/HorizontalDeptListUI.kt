@@ -1,4 +1,4 @@
-package uz.turgunboyevjurabek.cashcare.View.home
+package uz.turgunboyevjurabek.cashcare.Prezentation.ViewScreens.home
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -32,8 +32,8 @@ fun HorizontalDeptListUI() {
 
     Box(
         modifier = Modifier
-            .width(120.dp)
-            .height(180.dp)
+            .width(135.dp)
+            .height(200.dp)
             .clip(RoundedCornerShape(12.dp))
     ){
         Column(
@@ -42,32 +42,36 @@ fun HorizontalDeptListUI() {
                 .background(color = colorResource(id = R.color.color1)),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
-
-        ) {
-            Spacer(modifier = Modifier.height(10.dp).fillMaxWidth())
+        ){
             Image(
                 painter = painterResource(id = R.drawable.avatar),
                 contentDescription = null,
                 modifier = Modifier
-                    .size(65.dp)
+                    .size(75.dp)
+
+
             )
             Text(
                 text = "Ma’rufjon",
                 fontWeight = FontWeight.Medium,
                 fontSize = 15.sp,
-                color = Color.White
+                color = Color.White,
+                modifier = Modifier
+                    .padding(2.dp)
             )
              Text(
                 text = "2-dekabr, 2023",
                 fontWeight = FontWeight.Normal,
                 fontSize = 12.sp,
-                color = Color.White
+                color = Color.White,
+                 modifier = Modifier
+                     .padding(2.dp)
             )
 
             Box(
                 modifier = Modifier
-                    .height(27.dp)
-                    .width(86.dp)
+                    .height(33.dp)
+                    .width(92.dp)
                     .clip(RoundedCornerShape(8.dp)),
 
             ){
@@ -85,7 +89,7 @@ fun HorizontalDeptListUI() {
                     )
                 }
             }
-            Spacer(modifier = Modifier.height(10.dp).fillMaxWidth())
+
         }
 
     }

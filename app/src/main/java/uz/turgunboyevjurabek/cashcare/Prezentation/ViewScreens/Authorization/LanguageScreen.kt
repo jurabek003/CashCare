@@ -1,4 +1,4 @@
-package uz.turgunboyevjurabek.cashcare.View.Authorization
+package uz.turgunboyevjurabek.cashcare.Prezentation.ViewScreens.Authorization
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background

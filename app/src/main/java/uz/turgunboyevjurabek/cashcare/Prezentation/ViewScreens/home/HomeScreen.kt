@@ -4,7 +4,7 @@
     ExperimentalMaterial3Api::class
 )
 
-package uz.turgunboyevjurabek.cashcare.View.home
+package uz.turgunboyevjurabek.cashcare.Prezentation.ViewScreens.home
 
 import android.annotation.SuppressLint
 import android.app.ActionBar
@@ -68,7 +68,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import uz.turgunboyevjurabek.cashcare.Model.madels.BottomNavigationItem
 import uz.turgunboyevjurabek.cashcare.R
-import uz.turgunboyevjurabek.cashcare.View.UIElements.NameEdit
+import uz.turgunboyevjurabek.cashcare.Prezentation.UIElements.NameEdit
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter", "AutoboxingStateCreation")
 @Composable
@@ -191,9 +191,6 @@ fun HomeScreen() {
                     modifier = Modifier.fillMaxWidth(),
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    val text by remember {
-                        mutableStateOf("")
-                    }
                     Box(
                         modifier = Modifier.height(120.dp)
                     ) {
@@ -280,70 +277,81 @@ fun HomeScreen() {
                     }
                 }
 
-                Text(
-                    text = "Qarzlar tahlili",
-                    fontSize = 16.sp,
-                    fontWeight = FontWeight.Medium,
-                    modifier = Modifier
-                        .padding(top = 50.dp, start = 20.dp)
-                )
-                Row(
+                Column(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(horizontal = 20.dp, vertical = 30.dp),
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.SpaceBetween
+                        .weight(1.5f)
+                        .wrapContentHeight()
+                    ,
+                    verticalArrangement = Arrangement.Bottom
+
                 ) {
                     Text(
-                        text = "Berilgan",
+                        text = "Qarzlar tahlili",
                         fontSize = 16.sp,
-                        fontWeight = FontWeight.Medium
-                    )
-                    Box(
+                        fontWeight = FontWeight.Bold,
                         modifier = Modifier
-                            .clip(RoundedCornerShape(5.dp))
-                            .width(150.dp)
-                            .height(5.dp)
+                            .padding(top = 50.dp, start = 20.dp)
+                    )
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(horizontal = 20.dp, vertical = 30.dp),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.SpaceBetween
                     ) {
-                        Row(
+                        Text(
+                            text = "Berilgan",
+                            fontSize = 16.sp,
+                            fontWeight = FontWeight.Medium
+                        )
+                        Box(
                             modifier = Modifier
-                                .fillMaxSize()
-                                .background(colorResource(id = R.color.box_give))
+                                .clip(RoundedCornerShape(5.dp))
+                                .width(150.dp)
+                                .height(5.dp)
                         ) {
+                            Row(
+                                modifier = Modifier
+                                    .fillMaxSize()
+                                    .background(colorResource(id = R.color.box_give))
+                            ) {
 
+                            }
                         }
+                        Text(text = "75%", fontSize = 14.sp, fontWeight = FontWeight.Bold)
                     }
-                    Text(text = "75%", fontSize = 14.sp, fontWeight = FontWeight.Bold)
+
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(horizontal = 20.dp),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.SpaceBetween
+                    ) {
+                        Text(
+                            text = "Olingan",
+                            fontSize = 16.sp,
+                            fontWeight = FontWeight.Medium
+                        )
+                        Box(
+                            modifier = Modifier
+                                .clip(RoundedCornerShape(5.dp))
+                                .width(150.dp)
+                                .height(5.dp)
+                        ) {
+                            Row(
+                                modifier = Modifier
+                                    .fillMaxSize()
+                                    .background(colorResource(id = R.color.box_get))
+                            ) {
+
+                            }
+                        }
+                        Text(text = "50%", fontSize = 14.sp, fontWeight = FontWeight.Bold)
+                    }
                 }
 
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 20.dp),
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.SpaceBetween
-                ) {
-                    Text(
-                        text = "Olingan",
-                        fontSize = 16.sp,
-                        fontWeight = FontWeight.Medium
-                    )
-                    Box(
-                        modifier = Modifier
-                            .clip(RoundedCornerShape(5.dp))
-                            .width(150.dp)
-                            .height(5.dp)
-                    ) {
-                        Row(
-                            modifier = Modifier
-                                .fillMaxSize()
-                                .background(colorResource(id = R.color.box_get))
-                        ) {
-
-                        }
-                    }
-                    Text(text = "50%", fontSize = 14.sp, fontWeight = FontWeight.Bold)
-                }
             }
 
         }

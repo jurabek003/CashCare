@@ -1,4 +1,4 @@
-package uz.turgunboyevjurabek.cashcare.View.Authorization
+package uz.turgunboyevjurabek.cashcare.Prezentation.ViewScreens.Authorization
 
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.Image
@@ -49,8 +49,8 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import uz.turgunboyevjurabek.cashcare.Model.madels.RegionName
 import uz.turgunboyevjurabek.cashcare.R
-import uz.turgunboyevjurabek.cashcare.View.UIElements.CustomEdit
-import uz.turgunboyevjurabek.cashcare.View.UIElements.NameEdit
+import uz.turgunboyevjurabek.cashcare.Prezentation.UIElements.CustomEdit
+import uz.turgunboyevjurabek.cashcare.Prezentation.UIElements.NameEdit
 
 @Composable
 fun RegisterScreen(navController: NavController) {
@@ -107,7 +107,7 @@ fun RegisterScreen(navController: NavController) {
                 modifier = Modifier
                     .padding(start = 20.dp)
             )
-            userName=NameEdit()
+            userName= NameEdit()
             SelectRegionCard()
             val context= LocalContext.current
         }
