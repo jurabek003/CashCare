@@ -33,14 +33,11 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    val navController = rememberNavController()
-                    var screenName by rememberSaveable {
-                        mutableStateOf("Asosiy")
-                    }
-
                 Column {
-//                    AuthNavigation()
+
+//                  AuthNavigation()
                     MainNavigation()
+
                     }
                 }
             }

@@ -68,7 +68,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import uz.turgunboyevjurabek.cashcare.Data.Model.madels.BottomNavigationItem
+import uz.turgunboyevjurabek.cashcare.Domein.Model.madels.BottomNavigationItem
 import uz.turgunboyevjurabek.cashcare.R
 import uz.turgunboyevjurabek.cashcare.Prezentation.UIElements.NameEdit
 

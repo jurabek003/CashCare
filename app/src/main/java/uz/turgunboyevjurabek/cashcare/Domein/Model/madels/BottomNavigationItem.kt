@@ -1,4 +1,4 @@
-package uz.turgunboyevjurabek.cashcare.Data.Model.madels
+package uz.turgunboyevjurabek.cashcare.Domein.Model.madels
 
 import android.icu.text.CaseMap.Title
 import android.widget.QuickContactBadge

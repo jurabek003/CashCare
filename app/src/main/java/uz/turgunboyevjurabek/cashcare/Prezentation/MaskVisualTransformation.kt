@@ -1,4 +1,4 @@
-package uz.turgunboyevjurabek.cashcare
+package uz.turgunboyevjurabek.cashcare.Prezentation
 
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.input.OffsetMapping
