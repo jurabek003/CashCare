@@ -1,4 +1,4 @@
-package uz.turgunboyevjurabek.cashcare.Model.AuthNavigation
+package uz.turgunboyevjurabek.cashcare.Prezentation.AuthNavigation
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavController

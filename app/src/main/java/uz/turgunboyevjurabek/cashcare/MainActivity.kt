@@ -16,7 +16,8 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.rememberNavController
-import uz.turgunboyevjurabek.cashcare.Model.AuthNavigation.AuthNavigation
+import uz.turgunboyevjurabek.cashcare.Prezentation.AuthNavigation.AuthNavigation
+import uz.turgunboyevjurabek.cashcare.Prezentation.MainNavigation.MainNavigation
 import uz.turgunboyevjurabek.cashcare.Prezentation.ViewScreens.Authorization.InputSmsScreen
 import uz.turgunboyevjurabek.cashcare.Prezentation.ViewScreens.home.HomeScreen
 import uz.turgunboyevjurabek.cashcare.ui.theme.CashCareTheme
@@ -39,7 +40,7 @@ class MainActivity : ComponentActivity() {
 
                 Column {
 //                    AuthNavigation()
-                    HomeScreen()
+                    MainNavigation()
                     }
                 }
             }

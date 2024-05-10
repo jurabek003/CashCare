@@ -66,13 +66,15 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import uz.turgunboyevjurabek.cashcare.Model.madels.BottomNavigationItem
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
+import uz.turgunboyevjurabek.cashcare.Data.Model.madels.BottomNavigationItem
 import uz.turgunboyevjurabek.cashcare.R
 import uz.turgunboyevjurabek.cashcare.Prezentation.UIElements.NameEdit
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter", "AutoboxingStateCreation")
 @Composable
-fun HomeScreen() {
+fun HomeScreen(navController: NavController) {
     Column(
         modifier = Modifier.fillMaxSize()
     ) {
@@ -253,7 +255,7 @@ fun HomeScreen() {
                     )
                     TextButton(
                         onClick = {
-
+                            navController.navigate("AllDebtorsScreen")
                         }
                     ) {
                         Text(
@@ -264,11 +266,9 @@ fun HomeScreen() {
                         )
                     }
                 }
-
-
                 LazyRow(
                     modifier = Modifier
-                        .padding(horizontal = 10.dp, vertical = 10.dp)
+                        .padding(horizontal = 5.dp, vertical = 10.dp)
                         .fillMaxWidth(),
                     horizontalArrangement = Arrangement.spacedBy(20.dp)
                 ) {
@@ -276,13 +276,11 @@ fun HomeScreen() {
                         HorizontalDeptListUI()
                     }
                 }
-
                 Column(
                     modifier = Modifier
                         .fillMaxWidth()
                         .weight(1.5f)
-                        .wrapContentHeight()
-                    ,
+                        .wrapContentHeight(),
                     verticalArrangement = Arrangement.Bottom
 
                 ) {
@@ -361,6 +359,7 @@ fun HomeScreen() {
 @Preview(showSystemUi = true)
 @Composable
 private fun HomeUI() {
-    HomeScreen()
+    val rememberNavController = rememberNavController()
+    HomeScreen(navController = rememberNavController)
 }
 
