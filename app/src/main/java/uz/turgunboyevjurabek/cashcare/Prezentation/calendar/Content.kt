@@ -80,7 +80,7 @@ fun ContentItem(
             style = MaterialTheme.typography.bodyMedium,
             modifier = Modifier
                 .align(Alignment.Center)
-                .padding(10.dp)
+                .padding(5.dp)
                 .alpha(alpha = if (alpaText) 1f else 0.5f)
         )
     }

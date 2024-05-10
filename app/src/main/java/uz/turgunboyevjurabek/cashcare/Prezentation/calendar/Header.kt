@@ -3,6 +3,7 @@ package uz.turgunboyevjurabek.cashcare.Prezentation.calendar
 import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.padding
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.KeyboardArrowLeft
@@ -16,6 +17,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import uz.turgunboyevjurabek.cashcare.Prezentation.utils.getDisplayName
 import java.time.YearMonth
@@ -47,6 +49,7 @@ fun Header(
             style = MaterialTheme.typography.bodyLarge,
             fontWeight = FontWeight.ExtraBold,
             modifier = Modifier
+                .padding(vertical = 10.dp)
                 .weight(1f)
                 .align(Alignment.CenterVertically)
         )
