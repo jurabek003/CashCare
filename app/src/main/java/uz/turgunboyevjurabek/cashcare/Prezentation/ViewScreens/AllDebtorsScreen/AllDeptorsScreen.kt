@@ -103,7 +103,6 @@ fun AllDebtorsScreen(navController: NavController) {
                     )
                 }
             })
-
         })
     { paddingValues ->
         Column(
@@ -167,7 +166,7 @@ fun CalendarView(
     val context = LocalContext.current
     Card(
         modifier = Modifier
-            .padding(10.dp)
+            .padding(vertical = 10.dp, horizontal = 16.dp)
             .fillMaxWidth()
             .wrapContentHeight(unbounded = true)
     ) {

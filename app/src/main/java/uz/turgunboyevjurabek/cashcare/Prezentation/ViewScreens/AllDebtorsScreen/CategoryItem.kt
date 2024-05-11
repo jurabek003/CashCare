@@ -20,6 +20,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
@@ -36,21 +37,23 @@ import uz.turgunboyevjurabek.cashcare.R
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(vertical = 15.dp, horizontal = 20.dp)
+            .padding(vertical = 10.dp, horizontal = 20.dp)
             .height(70.dp)
     ){
         Row(
             modifier = Modifier
                 .fillMaxSize(),
             verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceAround
+            horizontalArrangement = Arrangement.Center
         ) {
             Image(
                 painter = painterResource(id = R.drawable.avatar),
                 contentDescription = null,
                 modifier = Modifier
                     .size(70.dp)
-                    .padding(5.dp)
+                    .padding(top = 5.dp)
+                        
+                    .align(Alignment.CenterVertically)
             )
             Column(
                 modifier = Modifier

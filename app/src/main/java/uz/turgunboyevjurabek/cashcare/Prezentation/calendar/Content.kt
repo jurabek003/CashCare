@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -41,7 +42,7 @@ fun Content(
                     ContentItem(
                         date = item,
                         onClickListener = onDateClickListener,
-                        modifier = Modifier.weight(1f),
+                        modifier = Modifier.weight(1f).size(35.dp),
                         alpaText = index > item.isToday
                     )
                     index++
@@ -64,7 +65,7 @@ fun ContentItem(
             .clip(RoundedCornerShape(10.dp))
             .background(
                 color = if (date.isSelected) {
-                    MaterialTheme.colorScheme.onErrorContainer
+                    Color.Black
                 } else {
                     Color.Transparent
                 }
@@ -77,7 +78,7 @@ fun ContentItem(
             text = date.dayOfMonth,
             fontSize = 11.sp,
             color = if (date.isSelected) Color.White else Color.Black,
-            style = MaterialTheme.typography.bodyMedium,
+            style = if (date.isSelected) MaterialTheme.typography.bodyLarge else MaterialTheme.typography.bodySmall,
             modifier = Modifier
                 .align(Alignment.Center)
                 .padding(5.dp)
